@@ -1,0 +1,15 @@
+#include "checker.cpp"
+#include "sierpinski.cpp"
+#include "EasyBMP.h"
+#include "EasyBMP.cpp"
+
+int main( int argc, char* argv[])
+{
+  BMP myImage;
+  myImage.ReadFromFile(argv[1]);
+  colorToGray(myImage);
+  myImage.WriteToFile(argv[2]);
+  
+  return 0;
+}
+

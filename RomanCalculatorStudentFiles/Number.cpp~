@@ -1,0 +1,14 @@
+#include Number.hpp
+
+bool isALegalRoman(strNumber){
+  if (strNumber == 'M'|'D'|'L'|'X'|'V'|'I')
+    return true;
+  else if ('MMMM'|'DDDD'|'CCCC'|'LLLL'|'XXXX'|'VVVV'|)
+    return false;
+  else if ('0')
+    return false;
+}
+
+int intValue
+
+

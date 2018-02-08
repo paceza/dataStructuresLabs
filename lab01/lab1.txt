@@ -1,0 +1,178 @@
+Zack Pace
+Lab01
+January 23 2017
+
+1) The values that hault the program are: 0,2,3,5,6,8,9...
+   Since the Basecase doesn't have an exit case for (n-3).
+
+2) Recursive function to compute 2^51
+
+double exp(double x, double n){
+  if (n == 0)
+    return 1; // basecase n=0
+  else
+    return x * exp(x, n-1); // multiply base 'x' * exponent
+}
+
+int main(){
+  double x,n;
+  cout << "give me a number" << endl;
+  cin >> x;
+  cout << "give me a power" << endl;
+  cin >> n;
+  cout << exp(x,n) << endl;
+  return 0;
+}
+
+Output: 
+give me a number
+2
+give me a power
+51
+2.2518e+15
+
+3)
+a) Compute f(1000) = 14 (ran code)
+b) f(2^k) = k
+   k | 2^k | f(2^k) | output
+   0   1     f(1)	0
+   1   2     f(2)	1
+   2   4     f(4)	2
+   3   8     f(8)	3
+   
+c) f(2^k -1) = 2k -2
+   Each time the output is increasing by 2k - 2
+   k | 2^k -1 | f(2^k -1) | output
+   0   0      	f(0)  	    -2
+   1   1	f(1)	    0
+   2   3	f(3)	    2
+   3   7	f(7)	    4
+   4   15	f(15)	    6
+
+4) f(0) = 0 = 0 (0 times f(1) is called)
+   f(1) = 1 = 1 (1 time f(1) is called)
+   f(2) = f(1) + f(0) = 1 (1 time f(1) is called)
+   f(3) = f(2) + f(1) = 2
+   f(4) = f(3) + f(2) = 3
+   f(5) = f(4) + f(3) = 5
+   f(6) = f(5) + f(4) = 8
+   f(7) = f(6) + f(5) = 13
+   f(8) = f(7) + f(6) = 21
+   f(9) = f(8) + f(7) = 34
+   f(10) = f(9) + f(8) = 55
+
+55 times f(1) is called
+
+5)
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+vector<string> gray(int n){
+  // basecase n = 1
+    // length 3 will be called 3 times to get down to the basecase
+      // the amount of results you have based on n is 2^n
+        //Create a vector with basecase [0,1]
+	  vector<string> v;
+	    vector<string> u;
+	      v.push_back("0");
+	        v.push_back("1");
+
+  if (n == 1)
+      return v;
+        else{
+	    v = gray(n-1); // Copy
+	        cout << "Recursive call v" << endl;
+		    int size = v.size();
+		        for(int i=0; i < size; ++i){
+			      u.push_back(v[i] + "0");
+			          }
+				      for(int i=0; i < size; ++i){
+				            u.push_back(v[i] + "1");
+					        }
+						    return u;
+						      }
+						      }
+
+int main(){
+  int num;
+    cout << "How long do you want your Gray Code to be?" << endl;
+      cin >> num;
+        vector<string> out = gray(num);
+	  for (int i = 0; i < out.size(); i++)
+	      cout << out[i] << endl;
+	      }
+output:
+How long do you want your Gray Code to be?
+6
+Recursive call v
+Recursive call v
+Recursive call v
+Recursive call v
+Recursive call v
+000000
+100000
+010000
+110000
+001000
+101000
+011000
+111000
+000100
+100100
+010100
+110100
+001100
+101100
+011100
+111100
+000010
+100010
+010010
+110010
+001010
+101010
+011010
+111010
+000110
+100110
+010110
+110110
+001110
+101110
+011110
+111110
+000001
+100001
+010001
+110001
+001001
+101001
+011001
+111001
+000101
+100101
+010101
+110101
+001101
+101101
+011101
+111101
+000011
+100011
+010011
+110011
+001011
+101011
+011011
+111011
+000111
+100111
+010111
+110111
+001111
+101111
+011111
+111111
